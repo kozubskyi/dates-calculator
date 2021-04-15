@@ -7,9 +7,21 @@ const refs = {
   resultMore: document.querySelector('.result-more'),
 };
 
+const startDate = localStorage.getItem('startDate');
+const endDate = localStorage.getItem('endDate');
+
+if (startDate && endDate) {
+  refs.startDate.value = startDate;
+  refs.endDate.value = endDate;
+  onSubmit();
+}
+
 refs.form.onsubmit = event => {
   event.preventDefault();
+  onSubmit();
+};
 
+function onSubmit() {
   //todo 1. Отображение allDays
 
   //* Не понадобились
@@ -34,6 +46,9 @@ refs.form.onsubmit = event => {
   refs.allDays.innerHTML = allDays;
 
   //todo 2. Отображение years, months, days
+
+  localStorage.setItem('startDate', refs.startDate.value);
+  localStorage.setItem('endDate', refs.endDate.value);
 
   const startDateArr = refs.startDate.value.split('-').map(el => Number(el));
   const endDateArr = refs.endDate.value.split('-').map(el => Number(el));
@@ -88,4 +103,4 @@ refs.form.onsubmit = event => {
   }
 
   refs.resultMore.innerHTML = `(или <span class="years">${years}</span> лет, <span class="months">${months}</span> месяцев и <span class="days">${days}</span> дней)`;
-};
+}
