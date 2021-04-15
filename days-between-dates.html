@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./days-between-dates.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <label for="start-date">Введите начальную дату</label>
+        <input type="date" name="" id="start-date" required />
+        <br />
+        <label for="end-date">Введите конечную дату</label>
+        <input type="date" name="" id="end-date" required />
+        <button type="submit" class="count-btn">Посчитать</button>
+      </form>
+      <p class="result">Разница составляет <span class="all-days">?</span> дней</p>
+      <p class="result-more"></p>
+    </div>
+    <script src="./days-between-dates.js"></script>
+  </body>
+</html>
