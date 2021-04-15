@@ -35,12 +35,27 @@ refs.form.onsubmit = event => {
 
   //todo 2. Отображение years, months, days
 
-  const startDateArr = refs.startDate.value.split('-').map(el => Number(el)); // [2020, 3, 13]
-  const endDateArr = refs.endDate.value.split('-').map(el => Number(el)); // [2021, 4, 15]
+  const startDateArr = refs.startDate.value.split('-').map(el => Number(el));
+  const endDateArr = refs.endDate.value.split('-').map(el => Number(el));
 
   let days = 0;
   let months = 0;
   let years = 0;
+
+  function daysInMonth(month, year) {
+    if ([1, 3, 5, 7, 8, 10, 12].includes(month)) {
+      return 31;
+    }
+    if ([4, 6, 9, 11].includes(month)) {
+      return 30;
+    }
+    if (month === 2 && year % 4 === 0) {
+      return 29;
+    }
+    if (month === 2 && year % 4 !== 0) {
+      return 28;
+    }
+  }
 
   if (endDateArr[2] >= startDateArr[2]) {
     days = endDateArr[2] - startDateArr[2];
@@ -55,7 +70,7 @@ refs.form.onsubmit = event => {
       years = endDateArr[0] - 1 - startDateArr[0];
     }
   } else {
-    days = endDateArr[2] + 31 - startDateArr[2];
+    days = endDateArr[2] + daysInMonth(startDateArr[1], startDateArr[0]) - startDateArr[2];
 
     if (endDateArr[1] - 1 >= startDateArr[1]) {
       months = endDateArr[1] - 1 - startDateArr[1];

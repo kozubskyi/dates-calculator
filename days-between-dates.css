@@ -6,6 +6,7 @@ html {
 body {
   padding: 10px;
   height: calc(100vh - 20px);
+  overflow: hidden;
 }
 
 .container {
@@ -87,5 +88,4 @@ label[for='end-date'] {
 .error {
   color: red;
   font-weight: 400;
-  font-size: 12px;
 }
