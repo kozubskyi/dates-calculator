@@ -25,13 +25,6 @@ refs.form.onsubmit = event => {
 function onSubmit() {
   //todo 1. Отображение allDays
 
-  //* Не понадобились
-  // const daysIn4Years = 1461; // 365 * 3 + 366
-  // const avarageDaysInYear = daysIn4Years / 4; // 365.25
-  // const avarageDaysInMonth = daysIn4Years / (4 * 12); // 30.4375
-
-  const unix1Day = 24 * 60 * 60 * 1000; // 86 400 000 (ms)
-
   // Date.parse() реобразовывает дату из формата YYYY-MM-DD в число формата unix
   const unixStartDate = Date.parse(refs.startDate.value);
   const unixEndDate = Date.parse(refs.endDate.value);
@@ -42,7 +35,7 @@ function onSubmit() {
     return;
   }
 
-  const allDays = unixDifference / unix1Day;
+  const allDays = unixDifference / (24 * 60 * 60 * 1000);
 
   refs.allDays.innerHTML = allDays;
 
