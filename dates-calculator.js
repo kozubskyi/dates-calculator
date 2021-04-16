@@ -17,10 +17,8 @@ if (startDate && endDate) {
 
 refs.form.onsubmit = event => {
   event.preventDefault();
-
   localStorage.setItem('startDate', refs.startDate.value);
   localStorage.setItem('endDate', refs.endDate.value);
-
   onSubmit();
 };
 
