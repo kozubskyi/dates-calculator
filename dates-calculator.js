@@ -17,13 +17,14 @@ if (startDate && endDate) {
 
 refs.form.onsubmit = event => {
   event.preventDefault();
+
+  localStorage.setItem('startDate', refs.startDate.value);
+  localStorage.setItem('endDate', refs.endDate.value);
+
   onSubmit();
 };
 
 function onSubmit() {
-  localStorage.setItem('startDate', refs.startDate.value);
-  localStorage.setItem('endDate', refs.endDate.value);
-
   //todo 1. Отображение allDays
 
   //* Не понадобились
