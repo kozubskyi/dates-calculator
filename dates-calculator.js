@@ -2,7 +2,6 @@ const refs = {
   form: document.querySelector('form'),
   startDate: document.querySelector('#start-date'),
   endDate: document.querySelector('#end-date'),
-  submitBtn: document.querySelector('.count-btn'),
   allDays: document.querySelector('.all-days'),
   resultMore: document.querySelector('.result-more'),
 };
