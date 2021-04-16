@@ -67,71 +67,34 @@ function onSubmit() {
     }
   }
 
-  //todo Вариант 2.1.
-  // const startDateArr = refs.startDate.value.split('-').map(el => Number(el));
-  // const endDateArr = refs.endDate.value.split('-').map(el => Number(el));
+  const startDateArr = refs.startDate.value.split('-').map(el => Number(el));
+  const endDateArr = refs.endDate.value.split('-').map(el => Number(el));
 
-  // if (endDateArr[2] >= startDateArr[2]) {
-  //   days = endDateArr[2] - startDateArr[2];
+  if (endDateArr[2] >= startDateArr[2]) {
+    days = endDateArr[2] - startDateArr[2];
 
-  //   if (endDateArr[1] >= startDateArr[1]) {
-  //     months = endDateArr[1] - startDateArr[1];
+    if (endDateArr[1] >= startDateArr[1]) {
+      months = endDateArr[1] - startDateArr[1];
 
-  //     years = endDateArr[0] - startDateArr[0];
-  //   } else {
-  //     months = endDateArr[1] + 12 - startDateArr[1];
-
-  //     years = endDateArr[0] - 1 - startDateArr[0];
-  //   }
-  // } else {
-  //   days = endDateArr[2] + daysInMonth(startDateArr[1], startDateArr[0]) - startDateArr[2];
-
-  //   if (endDateArr[1] - 1 >= startDateArr[1]) {
-  //     months = endDateArr[1] - 1 - startDateArr[1];
-
-  //     years = endDateArr[0] - startDateArr[0];
-  //   } else {
-  //     months = endDateArr[1] - 1 + 12 - startDateArr[1];
-
-  //     years = endDateArr[0] - 1 - startDateArr[0];
-  //   }
-  // }
-  //todo 2.1.
-
-  //todo Вариант 2.2.
-  const startDay = Number(refs.startDate.value.slice(8, 10));
-  const startMonth = Number(refs.startDate.value.slice(5, 7));
-  const startYear = Number(refs.startDate.value.slice(0, 4));
-  const endDay = Number(refs.endDate.value.slice(8, 10));
-  const endMonth = Number(refs.endDate.value.slice(5, 7));
-  const endYear = Number(refs.endDate.value.slice(0, 4));
-
-  if (endDay >= startDay) {
-    days = endDay - startDay;
-
-    if (endMonth >= startMonth) {
-      months = endMonth - startMonth;
-
-      years = endYear - startYear;
+      years = endDateArr[0] - startDateArr[0];
     } else {
-      months = endMonth + 12 - startMonth;
+      months = endDateArr[1] + 12 - startDateArr[1];
 
-      years = endYear - 1 - startYear;
+      years = endDateArr[0] - 1 - startDateArr[0];
     }
   } else {
-    days = endDay + daysInMonth(startMonth, startYear) - startDay;
+    days = endDateArr[2] + daysInMonth(startDateArr[1], startDateArr[0]) - startDateArr[2];
 
-    if (endMonth - 1 >= startMonth) {
-      months = endMonth - 1 - startMonth;
+    if (endDateArr[1] - 1 >= startDateArr[1]) {
+      months = endDateArr[1] - 1 - startDateArr[1];
 
-      years = endYear - startYear;
+      years = endDateArr[0] - startDateArr[0];
     } else {
-      months = endMonth - 1 + 12 - startMonth;
+      months = endDateArr[1] - 1 + 12 - startDateArr[1];
 
-      years = endYear - 1 - startYear;
+      years = endDateArr[0] - 1 - startDateArr[0];
     }
   }
-  //todo 2.2.
 
   if (years === 0 && months === 0) {
     days = allDays;
