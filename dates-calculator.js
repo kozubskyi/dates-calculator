@@ -35,7 +35,7 @@ function onSubmit() {
     return;
   }
 
-  const allDays = unixDifference / (24 * 60 * 60 * 1000);
+  const allDays = Math.round(unixDifference / (24 * 60 * 60 * 1000));
 
   refs.allDays.innerHTML = allDays;
 
