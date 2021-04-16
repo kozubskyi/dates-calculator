@@ -22,6 +22,9 @@ refs.form.onsubmit = event => {
 };
 
 function onSubmit() {
+  localStorage.setItem('startDate', refs.startDate.value);
+  localStorage.setItem('endDate', refs.endDate.value);
+
   //todo 1. Отображение allDays
 
   //* Не понадобились
@@ -47,12 +50,6 @@ function onSubmit() {
 
   //todo 2. Отображение years, months, days
 
-  localStorage.setItem('startDate', refs.startDate.value);
-  localStorage.setItem('endDate', refs.endDate.value);
-
-  const startDateArr = refs.startDate.value.split('-').map(el => Number(el));
-  const endDateArr = refs.endDate.value.split('-').map(el => Number(el));
-
   let days = 0;
   let months = 0;
   let years = 0;
@@ -72,31 +69,71 @@ function onSubmit() {
     }
   }
 
-  if (endDateArr[2] >= startDateArr[2]) {
-    days = endDateArr[2] - startDateArr[2];
+  //todo Вариант 2.1.
+  // const startDateArr = refs.startDate.value.split('-').map(el => Number(el));
+  // const endDateArr = refs.endDate.value.split('-').map(el => Number(el));
 
-    if (endDateArr[1] >= startDateArr[1]) {
-      months = endDateArr[1] - startDateArr[1];
+  // if (endDateArr[2] >= startDateArr[2]) {
+  //   days = endDateArr[2] - startDateArr[2];
 
-      years = endDateArr[0] - startDateArr[0];
+  //   if (endDateArr[1] >= startDateArr[1]) {
+  //     months = endDateArr[1] - startDateArr[1];
+
+  //     years = endDateArr[0] - startDateArr[0];
+  //   } else {
+  //     months = endDateArr[1] + 12 - startDateArr[1];
+
+  //     years = endDateArr[0] - 1 - startDateArr[0];
+  //   }
+  // } else {
+  //   days = endDateArr[2] + daysInMonth(startDateArr[1], startDateArr[0]) - startDateArr[2];
+
+  //   if (endDateArr[1] - 1 >= startDateArr[1]) {
+  //     months = endDateArr[1] - 1 - startDateArr[1];
+
+  //     years = endDateArr[0] - startDateArr[0];
+  //   } else {
+  //     months = endDateArr[1] - 1 + 12 - startDateArr[1];
+
+  //     years = endDateArr[0] - 1 - startDateArr[0];
+  //   }
+  // }
+  //todo 2.1.
+
+  //todo Вариант 2.2.
+  const startDay = Number(refs.startDate.value.slice(8, 10));
+  const startMonth = Number(refs.startDate.value.slice(5, 7));
+  const startYear = Number(refs.startDate.value.slice(0, 4));
+  const endDay = Number(refs.endDate.value.slice(8, 10));
+  const endMonth = Number(refs.endDate.value.slice(5, 7));
+  const endYear = Number(refs.endDate.value.slice(0, 4));
+
+  if (endDay >= startDay) {
+    days = endDay - startDay;
+
+    if (endMonth >= startMonth) {
+      months = endMonth - startMonth;
+
+      years = endYear - startYear;
     } else {
-      months = endDateArr[1] + 12 - startDateArr[1];
+      months = endMonth + 12 - startMonth;
 
-      years = endDateArr[0] - 1 - startDateArr[0];
+      years = endYear - 1 - startYear;
     }
   } else {
-    days = endDateArr[2] + daysInMonth(startDateArr[1], startDateArr[0]) - startDateArr[2];
+    days = endDay + daysInMonth(startMonth, startYear) - startDay;
 
-    if (endDateArr[1] - 1 >= startDateArr[1]) {
-      months = endDateArr[1] - 1 - startDateArr[1];
+    if (endMonth - 1 >= startMonth) {
+      months = endMonth - 1 - startMonth;
 
-      years = endDateArr[0] - startDateArr[0];
+      years = endYear - startYear;
     } else {
-      months = endDateArr[1] - 1 + 12 - startDateArr[1];
+      months = endMonth - 1 + 12 - startMonth;
 
-      years = endDateArr[0] - 1 - startDateArr[0];
+      years = endYear - 1 - startYear;
     }
   }
+  //todo 2.2.
 
   if (years === 0 && months === 0) {
     days = allDays;
