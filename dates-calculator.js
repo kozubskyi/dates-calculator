@@ -46,18 +46,10 @@ function onSubmit() {
   let years = 0;
 
   function daysInMonth(month, year) {
-    if ([1, 3, 5, 7, 8, 10, 12].includes(month)) {
-      return 31;
-    }
-    if ([4, 6, 9, 11].includes(month)) {
-      return 30;
-    }
-    if (month === 2 && year % 4 === 0) {
-      return 29;
-    }
-    if (month === 2 && year % 4 !== 0) {
-      return 28;
-    }
+    if ([1, 3, 5, 7, 8, 10, 12].includes(month)) return 31;
+    if ([4, 6, 9, 11].includes(month)) return 30;
+    if (month === 2 && year % 4 === 0) return 29;
+    if (month === 2 && year % 4 !== 0) return 28;
   }
 
   const startDateArr = refs.startDate.value.split('-').map(el => Number(el));
@@ -89,9 +81,7 @@ function onSubmit() {
     }
   }
 
-  if (years === 0 && months === 0) {
-    days = allDays;
-  }
+  if (years === 0 && months === 0) days = allDays;
 
   refs.resultMore.innerHTML = `(или <span class="years">${years}</span> лет, <span class="months">${months}</span> месяцев и <span class="days">${days}</span> дней)`;
 }
